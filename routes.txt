@@ -1,0 +1,39 @@
+Routes
+-------
+
+name: home
+url : /
+type: literal
+controller: IndexController
+action: indexAction
+
+###########################
+
+name: upload
+url : /upload
+type : literal
+controller: FileController
+action: uploadAction
+
+################################
+
+name: about
+url: /about
+type: literal
+controller: IndexController
+action: aboutAction
+
+
+###################
+
+name: contact
+url: /contact
+type: literal
+controller: IndexController
+action: contactAction
+
+###################
+
+name: posts
+url: /posts/page/:pageId
+type: segment

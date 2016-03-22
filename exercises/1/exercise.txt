@@ -1,0 +1,95 @@
+Θα φτιάξουμε τα routes για την μελλοντική εφαρμογή μας.
+Είναι πολύ απλή διαδικασία, αν τα γράψεις απ'την αρχή πως θες να είναι μετά μπορείς
+να τα μεταφέρεις σε κώδικα πολύ γρήγορα.
+Γενικά δεν ξεχνάμε ότι α)όλα τα routes/pages στο zend πρέπει να ειναι αναλυτικά δηλωμένα και β)πρέπει να δηλώνουμε οτιδήποτε χρησιμοποιούμε στην εφαρμοή μας.
+
+Εγώ θα σου περιγράψω τα routes, θα σου δώσω και το template και εσύ θα τα προσθέσεις.
+
+Τα routes:
+name		: home
+route		: /
+type		: literal
+controller  : index
+action		: index
+---------------------
+name		: about
+route		: /about
+type		: literal
+controller  : index
+action		: about
+-----------------------
+name		: products
+route		: /products
+type		: literal
+controller  : product
+action		: list
+-----------------------
+name		: posts
+route		: /posts
+type		: literal
+controller  : post
+action		: list
+----------------------
+name		: login
+route		: /posts
+type		: literal
+controller  : auth
+action		: login
+----------------------
+name		: register
+route		: /register
+type		: literal
+controller  : auth
+action		: login
+-----------------------
+
+1) Απότι βλέπεις έχουμε 4 διαφορετικά controllers: τα index, post, product και auth.
+Μέσα σε αυτά αντιστοιχούν και τα διάφορα actions που έχουμε. 
+Το ότι έχουμε 4 είναι λόγω του ότι το καθένα στο μέλλον θα έχει και άλλα routes που συσχετίζονται με τα υπόλοιπα.
+
+Πρέπει να δημιουργήσουμε αυτά τα controllers όμως, οπότε θα πας στον φάκελο 
+modules/Application/src/Application/Controller και θα φτιάξεις 4 αρχεία, τα IndexController.php (αυτο λογικά υπάρχει ήδη),
+PostController.php, ProductController.php και AuthController.php.
+
+2) Θα βρείς στον φάκελο με την άσκηση ένα TemplateController.php
+Θα κάνεις copy paste ότι έχει μέσα σε καθένα από τα αρχεία που έφτιαξες πριν, και θα αλλάξεις το όνομα της class στο κατάλληλο κάθε φορά.
+Πχ αν το κάνεις paste στο ProductController.php, θα το κάνεις ProductController αντί του TemplateController κλπ
+
+3) Ωραία φτιάξαμε τα controllers, τώρα πρέπει να τα δηλώσουμε. Θα πας στο αρχείο
+modules/Application/config/module.config.php
+Λίγο πιο κάτω λέει 'controllers' και μέσα έχει ένα κλειδί 'invokables'.
+Εκεί έχει την εγγραφή 
+'Application\Controller\Index' => Controller\IndexController::class
+Θα την κανεις paste άλλες 3 φορες (αφου φτιάξαμε άλλα 3 controller, το index το έχει ήδη δηλώσει) 
+Θα αλλάξεις από αριστερά το Index στο όνομα του controller καθε φορά χωρίς την λέξη controller, δηλαδή Product, Post κλπ
+Θα αλλάξεις δεξιά το IndexController αντίστοιχα στο όνομα του κάθε controller.
+
+4) Τώρα θα φτιάξουμε τα actions στα αντιστοιχα controllers. 
+Από την περιγραφή των routes έχουμε τα index και about στο IndexController, το list στο ProductController, το list στο PostController, και τα login και register στο AuthController.
+Οπότε θα πάς σε καθένα από τα αρχεία αυτά, και θα φτιάξεις μεθόδους με τα αντίστοιχα action names. Θα πρέπει το όνομα της μεθόδου να έχει στο τέλος του την λέξη Action.
+Πχ στο ProductController.php θα φτιάξεις την:
+public function listAction(){
+
+}
+στο PostController.php το ίδιο, κλπ.
+
+5) Ωραία, τώρα μπορούμε να δηλώσουμε τα routes μας. Πάμε πάλι στο αρχείο module.config.php
+Πάνω πάνω λέει router, μέσα έχει routes και μέσα του θα δηλώσουμε τα routes που σου περιέγραψα στην αρχή. Το template ειναι αυτό:
+'routeName' => array(
+	'type' => 'Zend\Mvc\Router\Http\Literal',
+	'options' => array(
+		'route'    => '/',
+		'defaults' => array(
+			'controller' => 'Application\Controller\Index',
+			'action'     => 'index',
+		),
+	),
+),
+Είχαμε πει τι βάζεις στο κάθε πεδίο, στο λέω και στην περιγραφή έτσι και αλλιώς. Πρόσεξε μόνο ότι στο 'controller' θα βάλεις δεξιά ότι δήλωσες στο βήμα 3 στην αριστερή μεριά.
+
+6) Τέλος θα φτιάξουμε το view των action μας. Πάμε στον φάκελο modules/Application/view/application και εκεί θα φτιάξουμε τους φακέλους product, post και auth (έχει ήδη τον index).
+Μέσα σε καθένα θα βάλεις ένα αρχείο phtml με το όνομα του action του, πχ στον product θα φτιάξεις το list.phtml, στον auth τα login.phtml και register.phtml κλπ
+
+Αυτό ήταν! Πίστεψε με, μπορεί να φαίνεται κόπος αλλά αν το κάνεις 2-3 φορές μετά είναι πανεύκολο. Σύν ότι αυτό θα το κάνεις μόνο μια φορά γενικα γενικα σε κάθε εφαρμογή..
+
+
