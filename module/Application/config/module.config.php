@@ -28,7 +28,7 @@ return array(
                 )
             ),
 
-            // contact route
+            // about route
             "about" => array(
                 "type" => 'literal',
                 "options" => array(
@@ -36,6 +36,42 @@ return array(
                     "defaults" => array(
                         'controller' => __NAMESPACE__ . '\Controller\Index',
                         'action' => 'about'
+                    )
+                )
+            ),
+
+            // login route
+            "login" => array(
+                "type" => 'literal',
+                "options" => array(
+                    "route" => "/login",
+                    "defaults" => array(
+                        'controller' => __NAMESPACE__ . '\Controller\Auth',
+                        'action' => 'login'
+                    )
+                )
+            ),
+
+            // register route
+            "register" => array(
+                "type" => 'literal',
+                "options" => array(
+                    "route" => "/register",
+                    "defaults" => array(
+                        'controller' => __NAMESPACE__ . '\Controller\Auth',
+                        'action' => 'register'
+                    )
+                )
+            ),
+
+            // contact route
+            "posts" => array(
+                "type" => 'literal',
+                "options" => array(
+                    "route" => "/posts",
+                    "defaults" => array(
+                        'controller' => __NAMESPACE__ . '\Controller\Post',
+                        'action' => 'list'
                     )
                 )
             ),
@@ -51,23 +87,6 @@ return array(
                     )
                 )
             ),
-
-
-
-
-//            // home route
-//            "test" => array( // name
-//                "type" => 'literal', // literal || segment
-//                'options' => array(
-//                    'route' => '/', // url
-//                    'defaults' => array(
-//                        'controller' => __NAMESPACE__ . '\Controller\Delivery', // controller
-//                        'action' => 'index' // indexAction
-//                    )
-//                )
-//            ),
-
-
 
 
             // home route
@@ -109,8 +128,10 @@ return array(
     ),
     'controllers' => array(
         'invokables' => array(
-            __NAMESPACE__ . '\Controller\Index' => Controller\IndexController::class,
-            __NAMESPACE__ . '\Controller\Delivery' => Controller\DeliveryController::class
+            // Application\Controller\Index =>
+            __NAMESPACE__ . '\Controller\Index' => __NAMESPACE__ . '\Controller\IndexController',
+            __NAMESPACE__ . '\Controller\Post' => __NAMESPACE__ . '\Controller\PostController',
+            __NAMESPACE__ . '\Controller\Auth' => __NAMESPACE__ . '\Controller\AuthController',
         ),
     ),
     'view_manager' => array(
