@@ -5,29 +5,6 @@ return array(
     'router' => array(
 
         'routes' => array(
-            "deliveries" => array(
-                "type" => "segment",
-                "options" => array(
-                    "route" => "/deliveries[/page/:page[/sort/:sort]]",
-                    "defaults" => array(
-                        'controller' => __NAMESPACE__ . '\Controller\Delivery',
-                        'action' => 'list', // listAction
-                        'page' => 1
-                    )
-                )
-            ),
-
-            "add_delivery" => array(
-                "type" => "literal",
-                "options" => array(
-                    "route" => "/delivery/add",
-                    "defaults" => array(
-                        'controller' => __NAMESPACE__ . '\Controller\Delivery',
-                        'action' => 'add', // listAction
-                    )
-                )
-            ),
-
             // about route
             "about" => array(
                 "type" => 'literal',
@@ -40,42 +17,6 @@ return array(
                 )
             ),
 
-            // login route
-            "login" => array(
-                "type" => 'literal',
-                "options" => array(
-                    "route" => "/login",
-                    "defaults" => array(
-                        'controller' => __NAMESPACE__ . '\Controller\Auth',
-                        'action' => 'login'
-                    )
-                )
-            ),
-
-            // register route
-            "register" => array(
-                "type" => 'literal',
-                "options" => array(
-                    "route" => "/register",
-                    "defaults" => array(
-                        'controller' => __NAMESPACE__ . '\Controller\Auth',
-                        'action' => 'register'
-                    )
-                )
-            ),
-
-            // contact route
-            "posts" => array(
-                "type" => 'literal',
-                "options" => array(
-                    "route" => "/posts",
-                    "defaults" => array(
-                        'controller' => __NAMESPACE__ . '\Controller\Post',
-                        'action' => 'list'
-                    )
-                )
-            ),
-            
             // contact route
             "contact" => array(
                 "type" => 'literal',
