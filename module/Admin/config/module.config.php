@@ -2,6 +2,25 @@
 namespace Admin;
 
 return array(
+    'doctrine' => array(
+        'driver' => array(
+            // defines an annotation driver with two paths, and names it `my_annotation_driver`
+            'entity' => array(
+                'class' => 'Doctrine\ORM\Mapping\Driver\AnnotationDriver',
+                'paths' => array(
+                    __DIR__ . '/../src/' . __NAMESPACE__ . '/Entity',
+                ),
+            ),
+
+            // default metadata driver, aggregates all other drivers into a single one.
+            // Override `orm_default` only if you know what you're doing
+            'orm_default' => array(
+                'drivers' => array(
+                   __NAMESPACE__ . '\Entity' => 'entity'
+                )
+            )
+        )
+    ),
     'router' => array(
         'routes' => array(
             "admin" => array(
@@ -94,7 +113,6 @@ return array(
                     ),
 
 
-
                 )
             ), // admin route
 
@@ -105,8 +123,7 @@ return array(
 
 
     'service_manager' => array(
-        'factories' => array(
-        ),
+        'factories' => array(),
     ),
     'controllers' => array(
         'invokables' => array(
@@ -115,9 +132,7 @@ return array(
         ),
     ),
     'view_manager' => array(
-        'template_map' => array(
-
-        ),
+        'template_map' => array(),
         'template_path_stack' => array(
             __DIR__ . '/../view',
         ),
