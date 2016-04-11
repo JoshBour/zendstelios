@@ -1,0 +1,60 @@
+home, about, contact, blog, products + categories, services, galleries
+
+IndexController: home, about, contact
+BlogController: list,add,update,delete
+ProductController: list,add,update,delete
+CategoryController: list,add,update,delete
+ServiceController: list,add,update,delete
+GalleryController: list,add,update,delete
+
+IndexController
+---------------
+home: /home
+about: /about
+contact: /contact
+
+BlogController
+--------------
+list: /admin/blog
+list/add: /admin/blog/add
+list/update: /admin/blog/update/:blogId
+list/delete: /admin/blog/delete/:blogId [post]
+
+ProductController
+--------------
+list: /admin/products
+list/add: /admin/products/add
+list/update: /admin/products/update/:productId
+list/delete: /admin/products/delete/:productId
+
+CategoryController
+--------------
+list: /admin/categories
+list/add: /admin/categories/add
+list/update: /admin/products/update/:categoryName
+list/delete: /admin/products/update/:categoryName
+
+ServiceController
+--------------
+list: /admin/services
+list/add: /admin/services/add
+list/update: /admin/services/update/:serviceId
+list/delete: /admin/services/update/:serviceId
+
+GalleryController
+--------------
+list: /admin/galleries
+list/add: /admin/galleries/add
+list/update: /admin/galleries/update/:galleryId
+list/delete: /admin/galleries/update/:galleryId
+
+
+/admin
+	/services
+		/add
+		/remove
+		/update
+	/galleries
+		/add
+		/remove
+		/update
