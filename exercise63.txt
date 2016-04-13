@@ -1,0 +1,37 @@
+Σε αυτή την άσκηση πρώτα θα φτιάξουμε τα routes που είχαν απομείνει και μετά μερικά από τα entities.
+
+Τα routes που μας μένουν είναι τα:
+
+BlogController
+--------------
+list: /admin/blog
+list/add: /admin/blog/add
+list/update: /admin/blog/update/:blogId
+list/delete: /admin/blog/delete/:blogId [post]
+
+ProductController
+--------------
+list: /admin/products
+list/add: /admin/products/add
+list/update: /admin/products/update/:productId
+list/delete: /admin/products/delete/:productId
+
+CategoryController
+--------------
+list: /admin/categories
+list/add: /admin/categories/add
+list/update: /admin/products/update/:categoryName
+list/delete: /admin/products/update/:categoryName
+
+Αριστερά είναι το όνομα του route και δεξιά το route/url του.
+Αν το url του έχει κάποια παράμετρο :parameter τότε ο τύπος του route είναι segment.
+Σε κάθε άλλη περίπτωση είναι literal.
+
+1) Εσύ θα πάρεις ένα που έχω φτιάξει ήδη εγώ, πχ το galleries και θα το αντιγράψεις με τις σωστές αλλαγές. Θέλω όμως να το κάνεις να λειτουργήσει, δηλαδή αν μπεις εγώ στο zend.local.com/admin/blog όντως να σε βγάζει εκεί που πρέπει.
+
+Αν δεν θυμάσαι πως πάει η διαδικασία, πες μου να στην θυμήσω από το τηλ.
+
+2) Θα φτιάξεις 2 entities που μας έμειναν (απ'το τελευταίο μάθημα), τα Blog και Category.
+Αυτά πιστεύω πως τα κατάλαβες πως πάνε, αλλά έχεις και αυτά που κάναμε για να πάρεις βάση.
+
+Ότι άλλο είναι ή σκαλώσεις πες μου!
